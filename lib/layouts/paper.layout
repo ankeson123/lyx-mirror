@@ -1,0 +1,207 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass{Paper (Standard Class)}
+#  \DeclareCategory{Articles}
+# Paper textclass definition file.
+# Created by Jean-Marc Lasgouttes (Jean-Marc.Lasgouttes@inria.fr)
+
+
+Format 111
+Columns                 1
+Sides                   1
+SecNumDepth             3
+TocDepth                3
+
+AddToPreamble
+  % Save and disable \example as this might
+  % clash with theorems
+  \let\paperclassexample\example
+  \let\endpaperclassexample\endexample
+  \let\example\relax
+  % If theorems hasn't been loaded, restore example
+  \AtBeginDocument{%
+    \@ifundefined{example}{\let\example\paperclassexample}{}
+  }
+EndPreamble
+
+Style Standard
+	Category              MainText
+	Margin                Static
+	LatexType             Paragraph
+	LatexName             dummy
+	ParIndent             MM
+	ParSkip               0.4
+	Align                 Block
+	AlignPossible         Block, Left, Right, Center
+	LabelType             No_Label
+	HTMLStyle
+		div.standard {
+			margin-bottom: 2ex;
+		}
+	EndHTMLStyle
+	DocBookTag            para
+End
+
+Input stdtitle.inc
+Input stdstruct.inc
+Input lyxmacros.inc
+Input stdlayouts.inc
+Input stdfloats.inc
+Input stdlists.inc
+Input stdcounters.inc
+
+###### All the section headings now use sans serif
+Input stdsections.inc
+
+Style Part
+	Align                 Left
+	TopSep                2
+	BottomSep             1.5
+	Font
+	  Family              Sans
+	  Series              Bold
+	  Size                Largest
+	EndFont
+End
+
+
+Style Section
+	Font
+	  Family              Sans
+	  Series              Bold
+	  Size                Large
+	EndFont
+	TocLevel 1
+End
+
+
+Style Subsection
+	Font
+	  Family              Sans
+	  Series              Bold
+	  Size                Large
+	EndFont
+	TocLevel 2
+End
+
+
+Style Subsubsection
+	Font
+	  Family              Sans
+	  Series              Bold
+	  Size                Normal
+	EndFont
+	TocLevel 3
+End
+
+
+Style Paragraph
+	Font
+	  Family              Sans
+	  Series              Bold
+	  Size                Normal
+	EndFont
+	TocLevel 4
+End
+
+
+Style Subparagraph
+	Font
+	  Family              Sans
+	  Size                Normal
+	EndFont
+	TocLevel 5
+End
+
+Style Description
+	LabelFont
+	  Family              Sans
+	  Series              Medium
+	EndFont
+End
+
+Input stdstarsections.inc
+
+# There are no chapters in a paper.
+NoStyle                 Chapter
+NoCounter               chapter
+NoStyle                 Chapter*
+
+
+
+###### The \maketitle stuff is by default left justified.
+Style Title
+	Align                 Left
+	Font
+	  Family              Sans
+	  Series              Bold
+	  Size                Largest
+	EndFont
+	DocBookTag            title
+	DocBookTagType        paragraph
+	DocBookInInfo         maybe
+End
+
+
+Style Author
+	Align                 Left
+	Font
+	  Size                Larger
+	  Family              Sans
+	  Shape               Italic
+	EndFont
+End
+
+
+Style Abstract
+	Font
+	  Size                Small
+	EndFont
+	LabelType             Above
+	LabelFont
+	  Series              Bold
+	  Family              Sans
+	  Size                Small
+	EndFont
+	LeftMargin            ""
+	RightMargin           ""
+	ParIndent             ""
+End
+
+
+### A few new things defined only in the paper document class
+Style SubTitle
+	CopyStyle             Title
+	LatexName             subtitle
+	Font
+	  Family              Sans
+	  Series              Medium
+	  Size                Large
+	EndFont
+	HTMLTitle             false
+	DocBookTag            subtitle
+	DocBookInInfo         maybe
+End
+
+
+Style Institution
+	CopyStyle             Title
+	LatexName             institution
+	Font
+	  Family              Sans
+	  Series              Medium
+	  Size                Normal
+	EndFont
+	HTMLTag               div
+	HTMLTitle             false
+End
+
+
+Style Keywords
+	CopyStyle             Abstract
+	LatexName             keywords
+	LabelString           "Keywords:"
+	DocBookTag         keyword
+	DocBookTagType     paragraph
+	DocBookWrapperTag  keywordset
+	DocBookInInfo      always
+End

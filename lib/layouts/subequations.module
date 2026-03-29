@@ -1,0 +1,32 @@
+#\DeclareLyXModule{Subequations}
+#\DeclareCategory{Maths}
+#DescriptionBegin
+#Provide a straightforward way to segregate subequations in LyX. See the Math manual.
+#DescriptionEnd
+
+# Author: Joel A. Kulesza (jkulesza@gmail.com)
+
+Format 111
+
+# This counter is used by the equations within the inset below
+# but the inset itself uses the equation counter (outside of
+# mathed
+Counter subequation
+  GuiName              Sub-Equation
+  Within               equation
+  LabelString          "\theequation\alph{subequation}"
+  PrettyFormat         "Equation|Equations (##)"
+End
+
+InsetLayout Flex:Subequations
+  LyxType               custom
+  Decoration            classic
+  Counter               equation
+  LabelString           "Subequations (##)"
+  LatexType             Environment
+  LatexName             subequations
+  MultiPar              true
+  Requires              amsmath
+  ResetsFont            true
+End
+

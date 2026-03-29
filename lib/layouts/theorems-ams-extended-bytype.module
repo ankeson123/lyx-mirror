@@ -1,0 +1,454 @@
+#\DeclareLyXModule{AMS Theorems (Extended, Numbered by Type)}
+#\DeclareCategory{Maths}
+#DescriptionBegin
+#Defines some additional theorem environments for use with the
+#AMS theorems packages. Includes Criterion, Algorithm, Axiom,
+#Condition, Note, Notation, Summary, Conclusion,
+#Assumption, and Case, in both numbered and non-numbered forms.
+#Contrary to the plain AMS-Extended module, the different theorem 
+#types provided here each have a separate counter (e.g., criterion 1,
+#criterion 2, axiom 1, assumption 1, criterion 3, ...,
+#as opposed to criterion 1, criterion 2, axiom 3, assumption 4, ...).
+#DescriptionEnd
+#Requires: theorems-ams-bytype
+
+# Original Author : David L. Johnson <dlj0@lehigh.edu>
+# Probably broken by Jean-Marc Lasgouttes <Jean-Marc.Lasgouttes@inria.fr>
+# modified and modularized by Emmanuel GUREGHIAN <gureghia@boston.bertin.fr>
+# Tinkered with Sep. '07 by Paul Rubin <rubin@msu.edu>
+# Modularized Jan 08 by Richard Kimberly Heck <rikiheck@lyx.org>
+# Hacked June '09 by Paul Rubin <rubin@msu.edu> to use separate counters
+
+Format 111
+
+Requires	amsmath
+
+# The environnements defined (regular and starred) are :
+# - Criterion
+# - Algorithm
+# - Axiom
+# - Condition
+# - Note
+# - Notation
+# - Summary
+# - Conclusion
+# - Assumption
+# - Question
+
+Input theorems-counters-extended-bytype.inc
+
+Style Criterion
+	CopyStyle             Theorem
+	LatexName             criterion
+	LabelString           "Criterion \thecriterion."
+	TheoremName           criterion
+	TheoremLaTeXName      criterionname
+	TheoremCrossRefName   Criterion
+	TheoremCrossRefPluralName  Criteria
+	TheoremZRefName       none
+	LangPreamble
+	  \providecommand{\criterionname}{_(Criterion)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\criterionname}{_(Criterion)}}
+	EndBabelPreamble
+	LabelCounter          criterion
+	DocBookTag            para
+	DocBookAttr           role='criterion'
+	DocBookItemTag        ""
+End
+
+Style Criterion*
+	CopyStyle             Theorem*
+	LatexName             criterion*
+	LabelString           "Criterion."
+	TheoremName           criterion*
+	TheoremCounter        none
+	TheoremLaTeXName      criterionname
+	LangPreamble
+	  \providecommand{\criterionname}{_(Criterion)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\criterionname}{_(Criterion)}}
+	EndBabelPreamble
+	DocBookTag            para
+	DocBookAttr           role='criterion'
+	DocBookItemTag        ""
+End
+
+
+Style Algorithm
+	CopyStyle             Theorem
+	LatexName             lyxalgorithm
+	LabelString           "Algorithm \thealgorithm."
+	TheoremName           lyxalgorithm
+	TheoremLaTeXName      algorithmname
+	TheoremZRefName       algorithm
+	TheoremCrossRefName   Algorithm
+	TheoremCrossRefPluralName Algorithms
+	LangPreamble
+	  \providecommand{\algorithmname}{_(Algorithm)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\algorithmname}{_(Algorithm)}}
+	EndBabelPreamble
+	LabelCounter          algorithm
+	DocBookTag            para
+	DocBookAttr           role='algorithm'
+	DocBookItemTag        ""
+End
+
+
+Style Algorithm*
+	CopyStyle             Theorem*
+	LatexName             lyxalgorithm*
+	LabelString           "Algorithm."
+	TheoremName           lyxalgorithm*
+	TheoremCounter        none
+	TheoremLaTeXName      algorithmname
+	LangPreamble
+	  \providecommand{\algorithmname}{_(Algorithm)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\algorithmname}{_(Algorithm)}}
+	EndBabelPreamble
+	DocBookTag            para
+	DocBookAttr           role='algorithm'
+	DocBookItemTag        ""
+End
+
+
+Style Axiom
+	CopyStyle             Theorem
+	LatexName             ax
+	LabelString           "Axiom \theaxiom."
+	TheoremName           ax
+	TheoremLaTeXName      axiomname
+	TheoremCrossRefName   Axiom
+	TheoremCrossRefPluralName  Axioms
+	TheoremZRefName       none
+	LangPreamble
+	  \providecommand{\axiomname}{_(Axiom)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\axiomname}{_(Axiom)}}
+	EndBabelPreamble
+	LabelCounter          axiom
+	DocBookTag            para
+	DocBookAttr           role='axiom'
+	DocBookItemTag        ""
+End
+
+
+Style Axiom*
+	CopyStyle             Theorem*
+	LatexName             ax*
+	LabelString           "Axiom."
+	TheoremName           ax*
+	TheoremCounter        none
+	TheoremLaTeXName      axiomname
+	LangPreamble
+	  \providecommand{\axiomname}{_(Axiom)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\axiomname}{_(Axiom)}}
+	EndBabelPreamble
+	DocBookTag            para
+	DocBookAttr           role='axiom'
+	DocBookItemTag        ""
+End
+
+
+Style Condition
+	CopyStyle             Definition
+	LatexName             condition
+	LabelString           "Condition \thecondition."
+	TheoremName           condition
+	TheoremStyle          definition
+	TheoremLaTeXName      conditionname
+	TheoremCrossRefName   Condition
+	TheoremCrossRefPluralName  Conditions
+	TheoremZRefName       none
+	LangPreamble
+	  \providecommand{\conditionname}{_(Condition)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\conditionname}{_(Condition)}}
+	EndBabelPreamble
+	LabelCounter          condition
+	DocBookTag            para
+	DocBookAttr           role='condition'
+	DocBookItemTag        ""
+End
+
+
+Style Condition*
+	CopyStyle             Definition*
+	LatexName             condition*
+	LabelString           "Condition."
+	TheoremName           condition*
+	TheoremStyle          definition
+	TheoremCounter        none
+	TheoremLaTeXName      conditionname
+	LangPreamble
+	  \providecommand{\conditionname}{_(Condition)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\conditionname}{_(Condition)}}
+	EndBabelPreamble
+	DocBookTag            para
+	DocBookAttr           role='condition'
+	DocBookItemTag        ""
+End
+
+
+Style Note
+	CopyStyle             Remark
+	LatexName             note
+	LabelString           "Note \thenote."
+	TheoremName           note
+	TheoremStyle          remark
+	TheoremLaTeXName      notename
+	TheoremCrossRefName   Note
+	TheoremCrossRefPluralName Notes[[theorem]]
+	LangPreamble
+	  \providecommand{\notename}{_(Note)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\notename}{_(Note)}}
+	EndBabelPreamble
+	LabelCounter          note
+	DocBookTag            note
+	DocBookItemTag        para
+End
+
+
+Style Note*
+	CopyStyle             Remark*
+	LatexName             note*
+	LabelString           "Note."
+	TheoremName           note*
+	TheoremStyle          remark
+	TheoremCounter        none
+	TheoremLaTeXName      notename
+	LangPreamble
+	  \providecommand{\notename}{_(Note)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\notename}{_(Note)}}
+	EndBabelPreamble
+	DocBookTag            note
+	DocBookItemTag        para
+End
+
+
+Style Notation
+	CopyStyle             Remark
+	LatexName             notation
+	LabelString           "Notation \thenotation."
+	TheoremName           notation
+	TheoremStyle          remark
+	TheoremLaTeXName      notationname
+	TheoremCrossRefName   Notation
+	TheoremCrossRefPluralName  Notations
+	TheoremZRefName       none
+	LangPreamble
+	  \providecommand{\notationname}{_(Notation)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\notationname}{_(Notation)}}
+	EndBabelPreamble
+	LabelCounter          notation
+	DocBookTag            para
+	DocBookAttr           role='notation'
+	DocBookItemTag        ""
+End
+
+
+Style Notation*
+	CopyStyle             Remark*
+	LatexName             notation*
+	LabelString           "Notation."
+	TheoremName           notation*
+	TheoremStyle          remark
+	TheoremCounter        none
+	TheoremLaTeXName      notationname
+	LangPreamble
+	  \providecommand{\notationname}{_(Notation)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\notationname}{_(Notation)}}
+	EndBabelPreamble
+	DocBookTag            para
+	DocBookAttr           role='notation'
+	DocBookItemTag        ""
+End
+
+
+Style Summary
+	CopyStyle             Remark
+	LatexName             summary
+	LabelString           "Summary \thesummary."
+	TheoremName           summary
+	TheoremStyle          remark
+	TheoremLaTeXName      summaryname
+	TheoremCrossRefName   Summary
+	TheoremCrossRefPluralName  Summaries
+	TheoremZRefName       none
+	LangPreamble
+	  \providecommand{\summaryname}{_(Summary)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\summaryname}{_(Summary)}}
+	EndBabelPreamble
+	LabelCounter          summary
+	DocBookTag            para
+	DocBookAttr           role='summary'
+	DocBookItemTag        ""
+End
+
+
+Style Summary*
+	CopyStyle             Remark*
+	LatexName             summary*
+	LabelString           "Summary."
+	TheoremName           summary*
+	TheoremStyle          remark
+	TheoremCounter        none
+	TheoremLaTeXName      summaryname
+	LangPreamble
+	  \providecommand{\summaryname}{_(Summary)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\summaryname}{_(Summary)}}
+	EndBabelPreamble
+	DocBookTag            para
+	DocBookAttr           role='summary'
+	DocBookItemTag        ""
+End
+
+
+Style Conclusion
+	CopyStyle             Remark
+	LatexName             conclusion
+	LabelString           "Conclusion \theconclusion."
+	TheoremName           conclusion
+	TheoremStyle          remark
+	TheoremLaTeXName      conclusionname
+	TheoremCrossRefName   Conclusion
+	TheoremCrossRefPluralName  Conclusions[[theorem]]
+	TheoremZRefName       none
+	LangPreamble
+	  \providecommand{\conclusionname}{_(Conclusion)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\conclusionname}{_(Conclusion)}}
+	EndBabelPreamble
+	LabelCounter          conclusion
+	DocBookTag            para
+	DocBookAttr           role='conclusion'
+	DocBookItemTag        ""
+End
+
+
+Style Conclusion*
+	CopyStyle             Remark*
+	LatexName             conclusion*
+	LabelString           "Conclusion."
+	TheoremName           conclusion*
+	TheoremStyle          remark
+	TheoremCounter        none
+	TheoremLaTeXName      conclusionname
+	LangPreamble
+	  \providecommand{\conclusionname}{_(Conclusion)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\conclusionname}{_(Conclusion)}}
+	EndBabelPreamble
+	DocBookTag            para
+	DocBookAttr           role='conclusion'
+	DocBookItemTag        ""
+End
+
+
+Style Assumption
+	CopyStyle             Theorem
+	LatexName             assumption
+	LabelString           "Assumption \theassumption."
+	TheoremName           assumption
+	TheoremLaTeXName      assumptionname
+	TheoremCrossRefName   Assumption
+	TheoremCrossRefPluralName  Assumptions
+	TheoremZRefName       none
+	LangPreamble
+	  \providecommand{\assumptionname}{_(Assumption)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\assumptionname}{_(Assumption)}}
+	EndBabelPreamble
+	LabelCounter          assumption
+	DocBookTag            para
+	DocBookAttr           role='assumption'
+	DocBookItemTag        ""
+End
+
+
+Style Assumption*
+	CopyStyle             Theorem*
+	LatexName             assumption*
+	LabelString           "Assumption."
+	TheoremName           assumption*
+	TheoremCounter        none
+	TheoremLaTeXName      assumptionname
+	LangPreamble
+	  \providecommand{\assumptionname}{_(Assumption)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\assumptionname}{_(Assumption)}}
+	EndBabelPreamble
+	DocBookTag            para
+	DocBookAttr           role='assumption'
+	DocBookItemTag        ""
+End
+
+Style Question
+	CopyStyle             Theorem
+	DependsOn             Theorem
+	LatexName             question
+	LabelString           "Question \thequestion."
+	TheoremName           question
+	TheoremLaTeXName      questionname
+	TheoremCrossRefName   Question
+	TheoremCrossRefPluralName  Questions
+	TheoremZRefName       none
+	LangPreamble
+	  \providecommand{\questionname}{_(Question)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\questionname}{_(Question)}}
+	EndBabelPreamble
+	LabelCounter          question
+	DocBookTag            para
+	DocBookAttr           role='question'
+	DocBookItemTag        ""
+End
+
+Style Question*
+	CopyStyle             Theorem*
+	LatexName             question*
+	LabelString           "Question."
+	TheoremName           question*
+	TheoremCounter        none
+	TheoremLaTeXName      questionname
+	LangPreamble
+	  \providecommand{\questionname}{_(Question)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\questionname}{_(Question)}}
+	EndBabelPreamble
+	DocBookTag            para
+	DocBookAttr           role='question'
+	DocBookItemTag        ""
+End
+
+Input theorems-refprefix.inc

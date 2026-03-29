@@ -1,0 +1,44 @@
+#\DeclareLyXModule{AMS Theorems}
+#\DeclareCategory{Maths}
+#DescriptionBegin
+#Defines theorem environments and the proof environment using the extended 
+#AMS machinery. Both numbered and unnumbered types are provided. By default, 
+#the theorems are numbered consecutively throughout the document. This can be
+#changed by loading one of the 'Theorems (Numbered by ...)' modules.
+#DescriptionEnd
+#Excludes: theorems-std | theorems-starred
+
+# Original Author : David L. Johnson <dlj0@lehigh.edu>
+# Probably broken by Jean-Marc Lasgouttes <Jean-Marc.Lasgouttes@inria.fr>
+# modified and modularized by Emmanuel GUREGHIAN <gureghia@boston.bertin.fr>
+# Tinkered with Sep. '07 by Paul Rubin <rubin@msu.edu>
+# Modularized Jan 08 by Richard Kimberly Heck <rikiheck@lyx.org>
+
+Format 111
+
+Requires	amsmath,amsthm
+
+Counter theorem
+	GuiName Theorem
+	LaTeXName thm
+	RefFormat thm "Theorem|Theorems \arabic{theorem}"
+	RefFormat cor "Corollary|Corollaries \arabic{theorem}"
+	RefFormat lem "Lemma|Lemmas \arabic{theorem}"
+	RefFormat prop "Proposition|Propositions \arabic{theorem}"
+	RefFormat conj "Conjecture|Conjectures \arabic{theorem}"
+	RefFormat def "Definition|Definitions \arabic{theorem}"
+	RefFormat exa "Example|Examples \arabic{theorem}"
+	RefFormat prob "Problem|Problems \arabic{theorem}"
+	RefFormat exer "Exercise|Exercises \arabic{theorem}"
+	RefFormat solu "Solution|Solutions \arabic{theorem}"
+	RefFormat rem "Remark|Remarks \arabic{theorem}"
+	RefFormat claim "Claim|Claims \arabic{theorem}"
+	RefFormat fact "Fact|Facts \arabic{theorem}"
+	RefFormat cri "Criterion|Criteria \arabic{theorem}"
+	RefFormat alg "Algorithm|Algorithms \arabic{theorem}"
+End
+
+Input theorems-order.inc
+Input theorems-ams.inc
+Input theorems-starred.inc
+Input theorems-proof.inc

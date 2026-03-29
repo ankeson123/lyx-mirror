@@ -1,0 +1,113 @@
+#\DeclareLyXModule{Standard Theorems (Numbered by Type within Sections)}
+#\DeclareCategory{Maths}
+#DescriptionBegin
+#Defines some theorem environments for use with non-AMS classes. Contrary to the
+#plain Theorem module, the different theorem types provided here each have a separate
+#counter (e.g., theorem 1, theorem 2, lemma 1, proposition 1, theorem 3, lemma 2, ...,
+#as opposed to theorem 1, theorem 2, lemma 3, proposition 4, ...). The numbering is reset
+#at each section start.
+#DescriptionEnd
+#Requires: theorems-bytype | theorems-ams-bytype
+#Excludes: theorems-std | theorems-ams | theorems-starred | theorems-chap | theorems-chap-bytype
+
+# Author: Paul Rubin <rubin@msu.edu> (hacked from Richard Kimberly Heck's various modules)
+
+Format 111
+
+Input theorems-counters-bytype.inc
+
+Counter theorem
+	Within section
+End
+Counter corollary
+	Within section
+End
+Counter lemma
+	Within section
+End
+Counter proposition
+	Within section
+End
+Counter conjecture
+	Within section
+End
+Counter fact
+	Within section
+End
+Counter definition
+	Within section
+End
+Counter example
+	Within section
+End
+Counter problem
+	Within section
+End
+Counter exercise
+	Within section
+End
+Counter remark
+	Within section
+End
+Counter claim
+	Within section
+End
+
+Style Theorem
+	TheoremParentCounter  section
+End
+
+
+Style Corollary
+	TheoremParentCounter  section
+End
+
+
+Style Lemma
+	TheoremParentCounter  section
+End
+
+
+Style Proposition
+	TheoremParentCounter  section
+End
+
+
+Style Conjecture
+	TheoremParentCounter  section
+End
+
+
+Style Fact
+	TheoremParentCounter  section
+End
+
+
+Style Definition
+	TheoremParentCounter  section
+End
+
+
+Style Example
+	TheoremParentCounter  section
+End
+
+
+Style Problem
+	TheoremParentCounter  section
+End
+
+
+Style Exercise
+	TheoremParentCounter  section
+End
+
+
+Style Remark
+	TheoremParentCounter  section
+End
+
+
+Style Claim
+	TheoremParentCounter  section
+End

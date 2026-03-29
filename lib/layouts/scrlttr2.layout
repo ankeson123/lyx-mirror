@@ -1,0 +1,459 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass{KOMA-Script Letter (V. 2)}
+#  \DeclareCategory{Letters}
+# KOMA scrlettr2 textclass definition file.
+# Juergen Spitzmueller <spitz@lyx.org>, 2003/2/17.
+# Uwe Stöhr <uwestoehr@web.de>, 2008/2/03.
+
+# TODO: DocBook doesn't support several letters in the same file.
+# DocBook design note: there are several ways to implement sender data, this class does it in 
+# another way that the other letters. Usually, there is a large <address> tag with author 
+# information in <info>, but there is no possibility to include a URL in this case. 
+# Therefore, here, we use a <author> in <info>, having an <address>. <author> allows a URL
+# (<uri>) and an address. However, phone and fax numbers should be put in <address>, they 
+# are not allowed directly in <author>... The generated DocBook will not be valid due to this!
+
+Format 111
+Provides subscript 1
+
+Style Standard
+	Category              MainText
+	LatexName             dummy
+	ParSep                0.4
+	AlignPossible         Block, Left, Right, Center
+	ParIndent             MM
+	DocBookTag            para
+End
+
+Input stdlists.inc
+Input stdlayouts.inc
+Input stdcounters.inc
+Input stdinsets.inc
+
+Style Description
+	LabelFont
+	  Family              Sans
+	EndFont
+End
+
+
+Style Labeling
+	CopyStyle             List
+	LatexName             labeling
+	# overwrite the preamble code definition
+	Preamble
+	EndPreamble
+End
+
+
+Style List
+	Obsoletedby           Labeling
+End
+
+
+Preamble
+	\newif\ifletterclosed
+EndPreamble
+
+
+Style Address
+	LatexType             Command
+	LatexName             begin
+	LatexParam            {letter}
+	Preamble
+		\AtEndDocument{\ifletterclosed\else\end{letter}\fi}
+	EndPreamble
+	KeepEmpty             1
+	LeftMargin            xxxxxxxxxxxx::xx
+	LabelSep              xx
+	TopSep                1.5
+	BottomSep             1.5
+	ParSep                1.5
+	Align                 Left
+	LabelType             Static
+	LabelString           "Address:"
+	LabelFont
+	  Series              Bold
+	  Shape               Italic
+	  Size                Small
+	  Color               textlabel1
+	EndFont
+    DocBookTag         NONE
+    DocBookWrapperTag  address
+    DocBookWrapperMergeWithPrevious  true
+    DocBookInInfo      always
+End
+
+
+# Start new letter
+# Not supported by DocBook.
+Style NextAddress
+	LatexType             Command
+	LatexName             end{letter}\begin{letter}
+	KeepEmpty             1
+	LeftMargin            xxxxxxxxxxxx::xx
+	LabelSep              xx
+	TopSep                1.5
+	BottomSep             1.5
+	ParSep                1.5
+	Align                 Left
+	LabelType             Static
+	LabelString           "Next Address:"
+	LabelFont
+	  Series              Bold
+	  Shape               Italic
+	  Size                Small
+	  Color               textlabel1
+	EndFont
+End
+
+
+Style Opening
+	Category              Letter
+	LatexType             Command
+	LatexName             opening
+	KeepEmpty             0
+	LeftMargin            xxxxxxxxxxxx::xx
+	LabelSep              xx
+	TopSep                0.4
+	BottomSep             0.4
+	ParSep                0.4
+	Align                 Left
+	LabelType             Static
+	LabelString           "Opening:"
+	LabelFont
+	  Series              Bold
+	  Shape               Italic
+	  Color               textlabel3
+	EndFont
+	DocBookTag            para
+	DocBookAttr           role='opening'
+End
+
+
+Style Closing
+	CopyStyle             Opening
+	LatexType             Command
+	LatexName             closing
+	LabelString           "Closing:"
+	DocBookTag            para
+	DocBookAttr           role='closing'
+End
+
+
+Style PS
+	CopyStyle             Opening
+	LatexType             Command
+	LatexName             ps
+	LabelString           "Post Scriptum:"
+	DocBookTag            para
+	DocBookAttr           role='post-scriptum'
+End
+
+
+Style CC
+	CopyStyle             Opening
+	LatexType             Command
+	LatexName             cc
+	LabelString           "cc:"
+	DocBookTag            para
+	DocBookAttr           role='carbon-copy'
+End
+
+
+Style Encl
+	CopyStyle             Opening
+	LatexName             encl
+	LabelString           "encl:"
+	DocBookTag            para
+	DocBookAttr           role='enclosed'
+End
+
+
+Style Name
+	Category              Letter
+	LatexType             Command
+	LatexName             setkomavar
+	LatexParam            {fromname}
+	KeepEmpty             1
+	LeftMargin            xxxxxxxxxxxxxxxxx::xx
+	LabelSep              xx
+	TopSep                0.4
+	BottomSep             0.4
+	ParSep                0.4
+	Align                 Left
+	LabelType             Static
+	LabelString           "Sender Name:"
+
+	LabelFont
+	  Series              Bold
+	  Shape               Italic
+	  Color               textlabel1
+	EndFont
+	DocBookTag            personname
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType paragraph
+	DocBookWrapperMergeWithPrevious true
+	DocBookInInfo         always     
+End
+
+
+Style Signature
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {signature}
+	LabelString           "Signature:"
+	DocBookTag            para
+	DocBookWrapperTag     abstract
+	DocBookWrapperAttr    role='signature'
+End
+
+
+Style SenderAddress
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {fromaddress}
+	LabelString           "Sender Address:"
+	DocBookTag            address
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType paragraph
+	DocBookWrapperMergeWithPrevious true
+	DocBookInInfo         always    
+End
+
+
+Style Telephone
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {fromphone}
+	LabelString           "Sender Phone:"
+	# TODO: to be valid DocBook, this should be in the address.
+	DocBookTag            phone
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType paragraph
+	DocBookWrapperMergeWithPrevious true
+	DocBookInInfo         always    
+End
+
+
+Style Fax
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {fromfax}
+	LabelString           "Sender Fax:"
+	# TODO: to be valid DocBook, this should be in the address.
+	DocBookTag            fax
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType paragraph
+	DocBookWrapperMergeWithPrevious true
+	DocBookInInfo         always    
+End
+
+
+Style E-Mail
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {fromemail}
+	LabelString           "Sender E-Mail:"
+	DocBookTag            email
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType paragraph
+	DocBookWrapperMergeWithPrevious true
+	DocBookInInfo         always
+End
+
+
+Style URL
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {fromurl}
+	LabelString           "Sender URL:"
+	DocBookTag            uri
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType paragraph
+	DocBookWrapperMergeWithPrevious true
+	DocBookInInfo         always
+End
+
+
+Style Bank
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {frombank}
+	LabelString           "Bank:"
+	DocBookTag            personblurb
+	DocBookAttr           role='bank'
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType paragraph
+	DocBookWrapperMergeWithPrevious true
+	DocBookInInfo         always
+End
+
+
+Style Logo
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {fromlogo}
+	LabelString           "Logo:"
+End
+
+
+Style Place
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {place}
+	LabelString           "Place:"
+	DocBookTag            country
+	DocBookTagType        paragraph
+	DocBookWrapperTag     address
+	DocBookWrapperTagType paragraph
+	DocBookWrapperMergeWithPrevious true
+	DocBookInInfo         always
+End
+
+
+Style Date
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {date}
+	LabelString           "Date:"
+	DocBookTag            date
+	DocBookTagType        paragraph
+	DocBookWrapperTag     NONE
+	DocBookInInfo         always
+    DocBookNoFontInside   true
+End
+
+
+Style Backaddress
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {backaddress}
+	LabelString           "Backaddress:"
+	DocBookTag            NONE
+	DocBookWrapperTag     address
+	DocBookWrapperTagType paragraph
+	DocBookWrapperMergeWithPrevious true
+	DocBookInInfo         always
+End
+
+
+Style Specialmail
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {specialmail}
+	LabelString           "Specialmail:"
+	# TODO: not implemented for DocBook, what is the meaning of this?
+End
+
+
+Style Location
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {location}
+	LabelString           "Location:"
+	# TODO: not implemented for DocBook, what is the meaning of this?
+End
+
+
+Style Title
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {title}
+	LabelString           "Title:"
+	HTMLTitle             true
+	DocBookTag            title
+	DocBookAttr           role='title' # As opposed to subject.
+	DocBookTagType        paragraph
+	DocBookWrapperTag     NONE
+	DocBookInInfo         maybe
+End
+
+
+Style Subject
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {subject}
+	LabelString           "Subject:"
+	DocBookTag            title
+	DocBookAttr           role='title'
+	DocBookTagType        paragraph
+	DocBookWrapperTag     NONE
+	DocBookInInfo         maybe
+End
+
+
+Style Yourref
+	CopyStyle             Name
+	LatexName             setkomavar
+	LatexParam            {yourref}
+	LabelString           "Your ref.:"
+
+	LabelFont
+	  Family              Sans
+	  Series              Medium
+	  Shape               Up
+	  Size                Small
+	  Color               None
+	EndFont
+End
+
+
+Style Yourmail
+	CopyStyle             Yourref
+	LatexName             setkomavar
+	LatexParam            {yourmail}
+	LabelString           "Your letter of:"
+End
+
+
+Style Myref
+	CopyStyle             Yourref
+	LatexName             setkomavar
+	LatexParam            {myref}
+	LabelString           "Our ref.:"
+End
+
+
+Style Customer
+	CopyStyle             Yourref
+	LatexName             setkomavar
+	LatexParam            {customer}
+	LabelString           "Customer no.:"
+End
+
+
+Style Invoice
+	CopyStyle             Yourref
+	LatexName             setkomavar
+	LatexParam            {invoice}
+	LabelString           "Invoice no.:"
+End
+
+
+Style EndLetter
+	Margin                Dynamic
+	LatexType             Command
+	LatexName             end{letter}
+	Preamble
+		\letterclosedtrue
+	EndPreamble
+	KeepEmpty             1
+	TopSep                1
+	ParSkip               0.4
+	Align                 Block
+	LabelSep              xx
+	LabelType             Static
+	LabelString           "End of letter"
+	LabelFont
+	  Series              Bold
+	  Color               textlabel2
+	EndFont
+End

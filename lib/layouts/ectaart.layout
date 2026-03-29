@@ -1,0 +1,253 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass[ectaart]{Econometrica (ectaart, obsolete)}
+#  \DeclareCategory{Obsolete}
+# Author : Koji Yokota <yok...@res.otaru-uc.ac.jp>
+
+Format 111
+Input article.layout
+
+TitleLatexType		Environment
+TitleLatexName		frontmatter
+
+ClassOptions
+	Other		draft
+End
+
+Style Title
+	Margin		Manual
+	LeftMargin	-MMMMMMMM
+	Align		Center
+	DocBookTag            title
+	DocBookTagType        paragraph
+	DocBookInInfo         maybe
+End
+
+Style RunTitle
+	Category	FrontMatter
+	LatexType	Command
+	LatexName	runtitle
+	InTitle		1
+	Margin		Dynamic
+	LabelType	Static
+	LabelString	"Running Title:"
+	LabelSep	M
+	LabelFont
+	  Color		textlabel3
+	EndFont
+	DocBookTag            titleabbrev
+	DocBookTagType        paragraph
+	DocBookInInfo         maybe
+End
+
+Style RunAuthor
+	CopyStyle	RunTitle
+	LatexType	Command
+	LatexName	runauthor
+	LabelString	"Running Author:"
+	DocBookTag            authorinitials
+	DocBookTagType        paragraph
+	DocBookInInfo         maybe
+End
+
+Style Abstract
+	Margin			Dynamic
+	LatexType		Environment
+	LatexName		abstract
+	InTitle			1
+	Category		FrontMatter
+	NextNoIndent		1
+	LabelSep		xxx
+	ParSkip			0.4
+	TopSep			0.7
+	BottomSep		0.4
+	Align			Block
+	LabelType		Static
+	LabelString		"Abstract"
+	LabelFont
+	  Size			Normal
+	  Series		Medium
+	EndFont
+	DocBookAbstract       true
+	DocBookInInfo         always
+	DocBookWrapperTag     abstract
+	DocBookWrapperMergeWithPrevious    true
+	DocBookTag            para
+End
+
+Style Address
+	CopyStyle	RunTitle
+	LatexName	address
+	Argument 1
+		LabelString   "Address Option"
+		Tooltip       "Optional argument for the address"
+	EndArgument
+	LabelString	"Address:"
+	DocBookInInfo         always
+	DocBookTag            address
+End
+
+Style Email
+	Category	FrontMatter
+	LatexType	Command
+	LatexName	lyxead
+	Argument 1
+		LabelString   "E-Mail Option"
+		Tooltip       "Optional argument for the e-mail"
+	EndArgument
+	InTitle		1
+	Margin		First_Dynamic
+	LabelType	Static
+	LabelString	"E-mail:"
+	LabelSep	M
+	Font
+	  Family	Typewriter
+	EndFont
+	LabelFont
+	  Family	Roman
+	  Series	Medium
+	  Size		Normal
+	  Color		textlabel1
+	EndFont
+	Preamble
+		\def\lyxead[#1]#2{\ead[label=#1]{#2}}
+	EndPreamble
+	DocBookTag            email
+	DocBookWrapperTag     address
+	DocBookInInfo         always
+End
+
+Style Web_Address
+	CopyStyle	Email
+	LatexName	lyxeadurl
+	LabelString	"Web address:"
+	Preamble
+		\def\lyxeadurl[#1]#2{\ead[label=#1,url]{#2}}
+	EndPreamble
+	DocBookTag            uri
+	DocBookWrapperTag     address
+	DocBookInInfo         always
+End
+
+Style Author
+	LatexType	Command
+	LatexName	author
+	NewLine		0
+	InTitle		1
+	DocBookTag            personname
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType inline
+	DocBookInInfo         always
+End
+
+Style Authors_Block
+	CopyStyle	RunTitle
+	LatexType	Environment
+	LatexName	aug
+	LabelString	"Authors Block:"
+	DocBookTag            personname
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType inline
+	DocBookInInfo         always
+End
+
+Style Keyword
+	CopyStyle	Abstract
+	LatexType	Environment
+	LatexName	keyword
+	LabelString	"Keywords:"
+	LabelFont
+	  Shape		SmallCaps
+	EndFont
+End
+
+Style Thanks_Text
+	CopyStyle	Email
+	LatexType	Command
+	LatexName	lyxthankstext
+	NeedProtect	1
+	LabelType	Static
+	LabelCounter	Thanks
+	LabelString	"Thanks \theThanks:"
+        Preamble
+		\def\lyxthankstext[#1]#2{\thankstext{#1}{#2}}
+        EndPreamble
+End
+
+Style Emphasize
+	CopyStyle	Standard
+	LatexType	Environment
+	LatexName	lyxem
+	TopSep		1
+	Font
+	  Shape		Italic
+	EndFont
+	Preamble
+		\newenvironment{lyxem}{\par\begin{em}}{\end{em}\par}
+	EndPreamble
+End
+
+InsetLayout Flex:Thanks_Reference
+	LyxType		custom
+	LatexType	Command
+	LatexName	thanksref
+	MultiPar	0
+	CustomPars	0
+	Decoration	Classic
+	LabelString	"Thanks Ref"
+	ForcePlain	1
+	BgColor		background
+	ResetsFont true
+End
+
+InsetLayout Flex:Internet_Address_Reference
+	CopyStyle	Flex:Thanks_Reference
+	LatexName	printead
+	LabelString	"Internet Addess Ref"
+End
+
+InsetLayout Flex:Corresponding_Author
+	CopyStyle	Flex:Thanks_Reference
+	LatexName	corref
+	LabelString	"Corresponding Author"
+	BgColor		foreground
+End
+
+InsetLayout Flex:Author
+	CopyStyle	Flex:Thanks_Reference
+	LatexName	author
+	LabelString	"Author"
+	BgColor		textlabel2
+End
+
+InsetLayout Flex:Name_(First_Name)
+	CopyStyle	Flex:Thanks_Reference
+	LatexName	fnms
+	LabelString	"First Name"
+	BgColor		background
+End
+
+InsetLayout Flex:Name_(Surname)
+	CopyStyle	Flex:Thanks_Reference
+	LatexName	snm
+	LabelString	"Surname"
+	BgColor		background
+End
+
+InsetLayout Flex:Keyword
+	CopyStyle	Flex:Thanks_Reference
+	LatexName	kwd
+	LabelString	"Keyword"
+End
+
+InsetLayout Flex:By_Same_Author_(bib)
+	CopyStyle	Flex:Thanks_Reference
+	LatexName	bysame
+	LabelString	"bysame"
+	BgColor		textlabel1
+End
+
+Counter Thanks
+	GuiName "Footnote (Title)"
+End

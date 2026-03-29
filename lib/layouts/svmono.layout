@@ -1,0 +1,119 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass[svmono]{Springer Monographs (svmono)}
+#  \DeclareCategory{Books}
+#  Author: Koji Yokota <yokota@res.otaru-uc.ac.jp>
+#          adapted: Marcus Kriele <mkriele@mac.com> and Uwe Stöhr (April 2011)
+#
+#  Supports: SVMONO DOCUMENT CLASS -- version 5.5 (17-Dec-09)
+#  Class and style files and templates are found at:
+#       http://wiki.lyx.org/Examples/Springer
+#
+Format 111
+Input svcommon.inc
+
+TocDepth                2
+DocBookRoot		        book
+
+ClassOptions
+	FontSize	10
+End
+
+NoStyle Acknowledgments
+NoStyle Institute
+
+Style Abstract
+	LatexType	Command
+End
+
+Counter theorem
+	GuiName Theorem
+	Within	chapter
+End
+
+Counter definition
+	GuiName Definition
+	Within	chapter
+End
+
+Counter remark
+	GuiName Remark
+	Within	chapter
+End
+
+Counter corollary
+	GuiName Corollary
+	Within	chapter
+End
+
+Counter lemma
+	GuiName Lemma
+	Within	chapter
+End
+
+Counter proposition
+	GuiName Proposition
+	Within	chapter
+End
+
+Counter claim
+	GuiName Claim
+	Within	chapter
+End
+
+Counter conjecture
+	GuiName Conjecture
+	Within	chapter
+End
+
+Counter question
+	GuiName Question
+	Within	chapter
+End
+
+Counter example
+	GuiName Example
+	Within	chapter
+End
+
+Counter exercise
+	GuiName Exercise
+	Within	chapter
+End
+
+Counter case
+	GuiName Case
+	Within	chapter
+End
+
+Counter property
+	GuiName Property
+	Within	chapter
+End
+
+Counter note
+	GuiName Note
+	Within	chapter
+End
+
+Style Claim
+	LabelString	"Claim."
+End
+
+Style Proof
+	LabelString	"Proof."
+End
+
+Style Proof(QED)
+	LabelString	"Proof."
+End
+
+Style Proof(smartQED)
+	LabelString	"Proof."
+End
+
+NoStyle TOC_Title
+NoStyle TOC_Author
+NoStyle Running_Title
+NoStyle Running_Author
+
+

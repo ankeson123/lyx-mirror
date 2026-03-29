@@ -1,0 +1,34 @@
+#\DeclareLyXModule{Standard Theorems}
+#\DeclareCategory{Maths}
+#DescriptionBegin
+#Defines some theorem environments for use with non-AMS classes. By default, 
+#the theorems are numbered consecutively throughout the document. This can be
+#changed by loading one of the 'Theorems (Numbered by ...)' modules.
+#DescriptionEnd
+#Excludes: theorems-ams | theorems-starred
+
+# Author: Richard Kimberly Heck <rikiheck@lyx.org>
+
+Format 111
+
+Counter theorem
+	GuiName Theorem
+	LaTeXName thm
+	RefFormat thm "Theorem|Theorems \arabic{theorem}"
+	RefFormat cor "Corollary|Corollaries \arabic{theorem}"
+	RefFormat lem "Lemma|Lemmas \arabic{theorem}"
+	RefFormat prop "Proposition|Propositions \arabic{theorem}"
+	RefFormat conj "Conjecture|Conjectures \arabic{theorem}"
+	RefFormat fact "Fact|Facts \arabic{theorem}"
+	RefFormat def "Definition|Definitions \arabic{theorem}"
+	RefFormat exa "Example|Examples \arabic{theorem}"
+	RefFormat prob "Problem|Problems \arabic{theorem}"
+	RefFormat exer "Exercise|Exercises \arabic{theorem}"
+	RefFormat solu "Solution|Solutions \arabic{theorem}"
+	RefFormat rem "Remark|Remarks \arabic{theorem}"
+	RefFormat claim "Claim|Claims \arabic{theorem}"
+End
+
+Input theorems.inc
+Input theorems-proof.inc
+Input theorems-proof-std.inc

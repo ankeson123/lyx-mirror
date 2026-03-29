@@ -1,0 +1,47 @@
+#\DeclareLyXModule[endnotes.sty]{Endnotes (Basic)}
+#\DeclareCategory{Foot- and Endnotes}
+#DescriptionBegin
+#Adds an endnote inset, in addition to footnotes. This uses the endnotes
+#package, which has some limitations but works with older LaTeX distributions
+#as well. You will need to add an endnotes list
+#(Insert > List/Contents/References > Endnotes) where you
+#want the endnotes to appear.
+#DescriptionEnd
+#Excludes: enotez | foottoenotez
+
+Format 111
+
+Counter endnotes
+	GuiName Endnotes
+	PrettyFormat "Endnote|Endnotes ##"
+End
+
+InsetLayout Flex:Endnote
+   LyXType     custom
+   LatexName   endnote
+   LatexType   command
+   Counter     endnotes
+   Decoration  classic
+   Font
+     Size Small
+   EndFont
+   MultiPar    true
+   LabelString "Endnote ##"
+   Requires    endnotes
+   LangPreamble
+     \providecommand{\notesname}{_(Notes[[Endnotes]])}
+   EndLangPreamble
+   BabelPreamble
+     \addto\captions$$lang{\renewcommand{\notesname}{_(Notes[[Endnotes]])}}
+   EndBabelPreamble
+End
+
+# We are only interested in the list
+Float
+   Type          endnote
+   ListName      "Endnotes"
+   IsPredefined  true
+   UsesFloatPkg  false
+   ListCommand   theendnotes
+   Requires      endnotes
+End

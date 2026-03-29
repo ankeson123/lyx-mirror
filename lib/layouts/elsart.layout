@@ -1,0 +1,582 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass[elsart,amssymb.sty,latexsym.sty]{Elsevier (Obsolete Version)}
+#  \DeclareCategory{Obsolete}
+# Author: Rod Pinna <rpinna@civil.uwa.edu.au>
+# The Elsevier doc style also duplicates the theorem
+# environments used by the AMS. The definitions here have been
+# mainly taken from the amsmath.inc file, from lyx-1.0.2, by
+# David L. Johnson and Jean-Marc Lasgouttes. Some modifications
+# have been made.
+#
+# The Elsevier style *does not* implement the starred versions
+# of these environments, so they are not supported by this layout.
+# There are also a few AMS environments not impletemented by Elsevier,
+# so they are not included either.
+#
+# Version 1.0   19990506 R. Pinna Inital version
+# modified 2002-04-02   Herbert Voss <voss@perce.de>
+#       for use of BeginTitle/EndTitle
+# modified 2003-03-11 JMarc for use of TitleLatexType/TitleLatexName
+# modified 2003-04-10 Rod Pinna - added proof env. sent to me by Stacy Prowell
+# modified 2003-07-23 Rod Pinna - changes MaxCounter to Section,
+#       rather than subsection. The Elsevier doc file allows for
+#       numbered sections, as does the class file.
+
+
+Format 111
+Columns                 1
+Sides                   2
+PageStyle               headings
+
+
+ClassOptions
+#  FontSize             "default"       # controlled by class
+End
+
+# elsart does not use the plain old \maketitle
+TitleLatexType Environment
+TitleLatexName frontmatter
+
+
+Style Standard
+	Category              MainText
+	LatexName             dummy
+	LatexType             Paragraph
+	Margin                Static
+	ParIndent             MM
+	ParSkip               0.4
+	ParSep                0.4
+	TopSep                1.0
+	BottomSep             1.0
+	Align                 Block
+	AlignPossible         Block, Left, Right, Center
+	LabelType             No_Label
+	DocBookTag            para
+End
+
+
+Style Keywords
+	LatexName             keyword
+	LatexType             Environment
+	Margin                Static
+	ParIndent             MM
+	InTitle               1
+	ParSkip               0.4
+	ParSep                0.4
+	TopSep                1.0
+	BottomSep             1.0
+	Align                 Block
+	AlignPossible         Block, Left, Right, Center
+	LabelType             No_Label
+	Font
+	  Color               textlabel1
+	EndFont
+	DocBookTag         keyword
+	DocBookTagType     paragraph
+	DocBookWrapperTag  keywordset
+	DocBookInInfo      always
+End
+
+
+Input stdinsets.inc
+Input stdsections.inc
+Input stdstarsections.inc
+Input stdlists.inc
+Input stdstruct.inc
+Input stdlayouts.inc
+Input stdfloats.inc
+Input stdcounters.inc
+
+
+Style Title
+	Category              FrontMatter
+	Margin                Static
+	LatexType             Command
+	InTitle               1
+	LatexName             title
+	NextNoIndent          1
+	ParSkip               0.4
+	TopSep                1.3
+	BottomSep             0.7
+	ParSep                0.7
+	Align                 Center
+	LabelType             No_Label
+	Font
+	  Family              Sans
+	  Series              Bold
+	  Size                Largest
+	EndFont
+	HTMLTitle             true
+	DocBookTag            title
+	DocBookTagType        paragraph
+	DocBookInInfo         maybe
+End
+
+
+Style Author
+	Category              FrontMatter
+	Margin                Static
+	LatexType             Command
+	InTitle               1
+	LatexName             author
+	NextNoIndent          1
+	ParSkip               0.4
+	TopSep                0.7
+	BottomSep             0.7
+	ItemSep               0
+	ParSep                0
+	Align                 Center
+	Argument 1
+		LabelString   "Author Option"
+		Tooltip       "Optional argument for the author"
+	EndArgument
+	Font
+	  Series              Bold
+	EndFont
+	DocBookTag            personname
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType block
+	DocBookInInfo         always
+End
+
+
+Style Author_Address
+	Margin                Dynamic
+	LatexType             Command
+	InTitle               1
+	LatexName             address
+	Align                 Center
+	Labeltype             Static
+	LabelSep              M
+	LabelString           "Address:"
+	Argument 1
+		LabelString   "Address Option"
+		Tooltip       "Optional argument for the address"
+	EndArgument
+	LabelFont
+	  Shape               Italic
+	EndFont
+	DocBookTag            address
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType block
+	DocBookInInfo         always
+End
+
+
+Style Author_Email
+	Margin                Dynamic
+	LatexType             Command
+	InTitle               1
+	PassThru              1
+	ParbreakIsNewline     1
+	LatexName             ead
+	Align                 Center
+	Labeltype             Static
+	LabelSep              M
+	LabelString           "Email:"
+	TextFont
+	  Family              Typewriter
+	EndFont
+	LabelFont
+	  Shape               Italic
+	  Family              Roman
+	EndFont
+	DocBookTag            email
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType block
+	DocBookInInfo         always
+End
+
+
+Style Author_URL
+	Margin                Dynamic
+	LatexType             Command
+	InTitle               1
+	PassThru              1
+	ParbreakIsNewline     1
+	LatexName             ead
+	LatexParam            "[url]"
+	Align                 Center
+	Labeltype             Static
+	LabelSep              M
+	LabelString           "URL:"
+	TextFont
+	  Family              Typewriter
+	EndFont
+	LabelFont
+	  Shape               Italic
+	  Family              Roman
+	EndFont
+	DocBookTag            uri
+	DocBookTagType        paragraph
+	DocBookWrapperTag     author
+	DocBookWrapperTagType block
+	DocBookInInfo         always
+End
+
+
+# thanks is like a footnote
+Style Thanks
+	Margin                Static
+	LatexType             Command
+	LatexName             thanks
+	InTitle               1
+	Argument 1
+		LabelString   "Thanks Option"
+		Tooltip       "Optional argument for the thanks statement"
+	EndArgument
+	Font
+	  Size                Small
+	  Family              Typewriter
+	  Shape               Italic
+	EndFont
+	DocBookTag            footnote
+	DocBookItemTag        para
+End
+
+
+Style Abstract
+	Margin                Static
+	LatexType             Environment
+	LatexName             abstract
+	NextNoIndent          1
+	InTitle               1
+	LeftMargin            MMM
+	RightMargin           MMM
+	ParIndent             MM
+	ItemSep               0
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0
+	Align                 Block
+	LabelType             Centered
+	LabelString           "Abstract"
+	LabelBottomSep        0.5
+	Font
+	  Size                Small
+	EndFont
+	LabelFont
+	  Series              Bold
+	  Size                Large
+	EndFont
+	DocBookAbstract       true
+	DocBookInInfo         always
+	DocBookWrapperTag     abstract
+	DocBookWrapperMergeWithPrevious    true
+	DocBookTag            para
+End
+
+
+# Reasoning environments have been copied over from the theorem modules. They
+# could not be input as they do some stuff which is incompatible with the
+# Elsevier stlye: redefine the theorem* environments in the preamble.
+
+# The environments defined are :
+# - Theorem
+# - Proof
+# - Corollary
+# - Lemma
+# - Proposition
+# - Conjecture
+# - Criterion
+# - Algorithm
+# - Definition
+# - Example
+# - Problem
+# - Remark
+# - Note
+# - Claim
+# - Summary
+# - Acknowledgment
+# - Case
+
+Counter theorem
+	GuiName Theorem
+	RefFormat thm "Theorem|Theorems \arabic{theorem}"
+	RefFormat cor "Corollary|Corollaries \arabic{theorem}"
+	RefFormat lem "Lemma|Lemmas \arabic{theorem}"
+	RefFormat prop "Proposition|Propositions \arabic{theorem}"
+	RefFormat conj "Conjecture|Conjectures \arabic{theorem}"
+	RefFormat def "Definition|Definitions \arabic{theorem}"
+	RefFormat exa "Example|Examples \arabic{theorem}"
+	RefFormat prob "Problem|Problems \arabic{theorem}"
+	RefFormat exer "Exercise|Exercises \arabic{theorem}"
+	RefFormat solu "Solution|Solutions \arabic{theorem}"
+	RefFormat rem "Remark|Remarks \arabic{theorem}"
+	RefFormat claim "Claim|Claims \arabic{theorem}"
+End
+
+
+Style Theorem
+	Category              Reasoning
+	Margin                First_Dynamic
+	LatexType             Environment
+	LatexName             thm
+	NextNoIndent          1
+	LabelSep              xx
+	ParIndent             MMM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align                 Block
+	AlignPossible         Block, Left
+	LabelType             Static
+	LabelCounter          theorem
+	LabelString           "Theorem \arabic{theorem}"
+	Font
+	  Shape               Italic
+	  Size                Normal
+	EndFont
+	LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='theorem'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	DocBookWrapperMergeWithPrevious  true
+End
+
+
+# Proof style declaration - from email by Stacy Prowell (sprowell@cs.utk.edu)
+Style Proof
+	Category              Reasoning
+	Margin                First_Dynamic
+	LatexType             Environment
+	# elsart defines the unusual environment pf for proofs.
+	LatexName             pf
+	NextNoIndent          1
+	LabelSep              xx
+	ParIndent             MMM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align                 Block
+	AlignPossible         Block, Left
+	LabelType             Static
+	LabelString           "PROOF."
+	Font
+	  Shape               Up
+	  Size                Normal
+	EndFont
+	LabelFont
+	  Series              Bold
+	EndFont
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='proof'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	DocBookWrapperMergeWithPrevious  true
+End
+
+
+Style Lemma
+	CopyStyle             Theorem
+	LatexName             lem
+	LabelString           "Lemma \arabic{theorem}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='lemma'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	DocBookWrapperMergeWithPrevious  true
+End
+
+
+Style Corollary
+	CopyStyle             Theorem
+	LatexName             cor
+	LabelString           "Corollary \arabic{theorem}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='corollary'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	DocBookWrapperMergeWithPrevious  true
+End
+
+
+Style Proposition
+	CopyStyle             Theorem
+	LatexName             prop
+	LabelString           "Proposition \arabic{theorem}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='proposition'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	DocBookWrapperMergeWithPrevious  true
+End
+
+
+Style Criterion
+	CopyStyle             Theorem
+	LatexName             crit
+	LabelString           "Criterion \arabic{theorem}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='criterion'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	DocBookWrapperMergeWithPrevious  true
+End
+
+
+Style Algorithm
+	CopyStyle             Theorem
+	LatexName             alg
+	LabelString           "Algorithm \arabic{theorem}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='algorithm'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	DocBookWrapperMergeWithPrevious  true
+End
+
+
+Style Definition
+	CopyStyle             Theorem
+	LatexName             defn
+	LabelString           "Definition \arabic{theorem}"
+	Font
+	  Shape               Up
+	EndFont
+	LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='definition'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	DocBookWrapperMergeWithPrevious  true
+End
+
+
+Style Conjecture
+	CopyStyle             Theorem
+	LatexName             conj
+	LabelString           "Conjecture \arabic{theorem}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='conjecture'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	DocBookWrapperMergeWithPrevious  true
+End
+
+
+Style Example
+	CopyStyle             Theorem
+	LatexName             exmp
+	LabelString           "Example \arabic{theorem}"
+	DocBookWrapperTag     informalexample
+	DocBookTag            para
+	DocBookAttr           ""
+End
+
+
+Style Problem
+	CopyStyle             Theorem
+	LatexName             prob
+	LabelString           "Problem \arabic{theorem}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='problem'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+End
+
+
+Style Remark
+	CopyStyle             Theorem
+	LatexName             rem
+	LabelString           "Remark \arabic{theorem}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='remark'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+End
+
+
+Style Note
+	CopyStyle             Theorem
+	LatexName             note
+	LabelString           "Note \arabic{theorem}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='note'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+End
+
+
+Style Claim
+	CopyStyle             Theorem
+	LatexName             claim
+	LabelString           "Claim \arabic{theorem}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='claim'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+End
+
+
+Counter summ
+	GuiName Summary
+	PrettyFormat "Summary|Summaries ##"
+End
+
+Style Summary
+	CopyStyle             Theorem
+	LatexName             summ
+	LabelCounter          summ
+	LabelString           "Summary \arabic{summ}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='summary'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	RefPrefix             summ
+End
+
+
+Counter case
+	GuiName Case
+	PrettyFormat "Case|Cases ##"
+End
+
+Style Case
+	CopyStyle             Theorem
+	LatexName             case
+	LabelCounter          case
+	LabelString           "Case \arabic{case}"
+	DocBookWrapperTag     figure
+	DocBookWrapperAttr    role='case'
+	DocBookTag            para
+	DocBookGenerateTitle  true
+	RefPrefix             case
+End
+
+
+# This is not taken from the AMS defs, so as to match the output of the
+# style file.
+Style Acknowledgment
+	Margin                Static
+	LatexType             environment
+	LatexName             ack
+	LabelType             Above
+	LabelBottomsep        1
+	LabelString           "Acknowledgment"
+	parsep                0.3
+	LabelFont
+	  Size                large
+	  Series              Bold
+	EndFont
+	DocBookTag            para
+	DocBookWrapperTag     acknowledgements
+	RefPrefix             ack
+End
+
+
+Input theorems-refprefix.inc

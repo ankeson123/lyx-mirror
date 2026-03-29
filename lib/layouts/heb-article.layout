@@ -1,0 +1,148 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass[article,theorem.sty]{Hebrew Article}
+#  \DeclareCategory{Articles}
+# Hebrew article textclass definition file.
+# Author: Dekel Tsur <dekel@math.tau.ac.il>
+# Few changes by Baruch Even <baruch.even@writeme.com>
+# Edited by Udi Fogiel <udifoglle@gmail.com>
+
+Format 111
+Input article
+
+Counter theorem
+	Within	section
+	RefFormat thm "Theorem|Theorems \thesection.\arabic{theorem}"
+	RefFormat cor "Corollary|Corollaries \thesection.\arabic{theorem}"
+	RefFormat lem "Lemma|Lemmas \thesection.\arabic{theorem}"
+	RefFormat claim "Claim|Claims \thesection.\arabic{theorem}"
+	RefFormat def "Definition|Definitions \thesection.\arabic{theorem}"
+	RefFormat rem "Remark|Remarks \thesection.\arabic{theorem}"
+End
+
+Style Theorem
+	Category              Reasoning
+	Margin                First_Dynamic
+	LatexType             Environment
+	LatexName             theorem
+	NextNoIndent          1
+	LabelSep              xx
+	ParIndent             MMM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align                 Block
+	AlignPossible         Block, Left
+	LabelType             Static
+	LabelString           "Theorem \thetheorem."
+	LabelCounter		theorem
+	Font
+	  Shape               Up
+	  Size                Normal
+	EndFont
+	LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	Preamble
+		\usepackage{theorem}
+		\theorembodyfont{\upshape}
+		\newtheorem{theorem}{משפט}[section]
+		% Only needed by babel-hebrew
+		\AtBeginDocument{\@ifundefined{make@lr}{}{%
+		  \make@lr\thetheorem
+		}}
+	EndPreamble
+End
+
+
+Style Lemma
+	CopyStyle             Theorem
+	LatexName             lemma
+	LabelString           "Lemma \thetheorem."
+	Preamble
+		\newtheorem{lemma}[theorem]{למה}
+	EndPreamble
+	DependsOn Theorem
+End
+
+
+Style Corollary
+	CopyStyle             Theorem
+	LatexName             corollary
+	LabelString           "Corollary \thetheorem."
+	Preamble
+		\newtheorem{corollary}[theorem]{מסקנה}
+	EndPreamble
+	DependsOn Theorem
+End
+
+
+Style Claim
+	CopyStyle             Theorem
+	LatexName             claim
+	LabelString           "Claim \thetheorem."
+	Preamble
+		\newtheorem{claim}[theorem]{טענה}
+	EndPreamble
+	DependsOn Theorem
+End
+
+
+Style Definition
+	CopyStyle             Theorem
+	LatexName             definition
+	LabelString           "Definition \thetheorem."
+	Preamble
+		\newtheorem{definition}[theorem]{הגדרה}
+	EndPreamble
+	DependsOn Theorem
+End
+
+
+Style Remarks
+	CopyStyle             Theorem
+	LatexName             remark
+	LabelString           "Remarks \thetheorem."
+	Preamble
+            \newtheorem{remark}[theorem]{הערה}
+	EndPreamble
+	DependsOn Theorem
+End
+
+
+Style Proof
+	Category              Reasoning
+	Margin                First_Dynamic
+	LatexType             Environment
+	LatexName             proof
+	NextNoIndent          1
+	LabelSep              xx
+	ParIndent             MMM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align                 Block
+	AlignPossible         Block, Left
+	LabelType             Static
+	LabelString           "Proof:"
+	EndLabelType          Filled_Box
+	Font
+	  Shape               Up
+	  Size                Normal
+	EndFont
+	LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	Preamble
+		\newenvironment{proof}%
+			{\textbf{הוכחה:}}%
+			{\hfill\rule{2mm}{2mm}\par\vspace{2mm}}
+	EndPreamble
+End
+
+Input theorems-refprefix.inc

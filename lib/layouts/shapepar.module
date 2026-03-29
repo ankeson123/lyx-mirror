@@ -1,0 +1,154 @@
+#\DeclareLyXModule[shapepar.sty]{Custom Paragraph Shapes}
+#\DeclareCategory{Paragraph Styles}
+#DescriptionBegin
+#Provides several paragraph shapes as well as commands to define custom
+#shapes. For a description see LyX's Additional features manual,
+#section Modules > Paragraph Styles > Custom Paragraph Shapes.
+#DescriptionEnd
+#Author: Uwe Stöhr <uwestoehr@web.de>
+
+Format 111
+
+AddToPreamble
+ % used for custom paragraph shapes
+ \IfFileExists{candleshape.def}{%
+  \input{candleshape.def}}{}
+ \IfFileExists{dropshape.def}{%
+  \input{dropshape.def}}{}
+ \IfFileExists{TeXshape.def}{%
+  \input{TeXshape.def}}{}
+ \IfFileExists{triangleshapes.def}{%
+  \input{triangleshapes.def}}{}
+
+EndPreamble
+
+# first the standard shapes
+
+Style "CD label"
+	LatexType	command
+	LatexName	CDlabel
+	Requires	shapepar
+	Category	ShapedParagraphs
+	NextNoIndent	1
+	Margin		Static
+	ParIndent	MM
+	ParSkip		0.4
+	Align		Block
+	LabelType	No_Label
+	DocBookWrapperTag  sidebar
+	DocBookWrapperAttr role='cd-label'
+	DocBookTag  para
+End
+
+Style "Circle"
+	CopyStyle	"CD label"
+	LatexName	circlepar
+	DocBookWrapperAttr role='circle'
+End
+
+Style "Diamond"
+	CopyStyle	"CD label"
+	LatexName	diamondpar
+	DocBookWrapperAttr role='diamond'
+End
+
+Style "Heart"
+	CopyStyle	"CD label"
+	LatexName	heartpar
+	DocBookWrapperAttr role='heart'
+End
+
+Style "Hexagon"
+	CopyStyle	"CD label"
+	LatexName	hexagonpar
+	DocBookWrapperAttr role='hexagon'
+End
+
+Style "Nut"
+	CopyStyle	"CD label"
+	LatexName	nutpar
+	DocBookWrapperAttr role='nut'
+End
+
+Style "Square"
+	CopyStyle	"CD label"
+	LatexName	squarepar
+	DocBookWrapperAttr role='square'
+End
+
+Style "Star"
+	CopyStyle	"CD label"
+	LatexName	starpar
+	DocBookWrapperAttr role='star'
+End
+
+# now the shapes defined in the .def files
+
+Style "Candle"
+	CopyStyle	"CD label"
+	LatexName	shapepar{\candle}
+	DocBookWrapperAttr role='candle'
+End
+
+Style "Drop down"
+	CopyStyle	"CD label"
+	LatexName	droppar
+	DocBookWrapperAttr role='drop-down'
+End
+
+Style "Drop up"
+	CopyStyle	"CD label"
+	LatexName	dropuppar
+	DocBookWrapperAttr role='drop-up'
+End
+
+Style "TeX"
+	CopyStyle	"CD label"
+	LatexName	shapepar{\TeXshape}
+	DocBookWrapperAttr role='tex'
+End
+
+Style "Triangle up"
+	CopyStyle	"CD label"
+	LatexName	triangleuppar
+	DocBookWrapperAttr role='triangle-up'
+End
+
+Style "Triangle down"
+	CopyStyle	"CD label"
+	LatexName	triangledownpar
+	DocBookWrapperAttr role='triangle-down'
+End
+
+Style "Triangle left"
+	CopyStyle	"CD label"
+	LatexName	triangleleftpar
+	DocBookWrapperAttr role='triangle-left'
+End
+
+Style "Triangle right"
+	CopyStyle	"CD label"
+	LatexName	trianglerightpar
+	DocBookWrapperAttr role='triangle-right'
+End
+
+# finally the low-level commands
+Style "shapepar"
+	CopyStyle	"CD label"
+	LatexName	shapepar
+	Argument 1
+	  Mandatory	0
+	  LabelString	"Scale"
+	  Tooltip	"For scaling the <Shape specification> to positions on the page"
+	EndArgument
+	Argument 2
+	  Mandatory	1
+	  LabelString	"Shape specification"
+	  Tooltip	"Specification of the shape"
+	EndArgument
+End
+
+Style "Shapepar"
+	CopyStyle	"shapepar"
+	LatexName	Shapepar
+End
